@@ -1,6 +1,5 @@
 package com.kapp.listen2youtube.model;
 
-import android.content.ContentUris;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.widget.ImageView;
@@ -34,16 +33,16 @@ public class LocalFileData implements IDisplayData {
         return Uri.fromFile(new File(path));
     }
 
-    public String getAlbum(){
-        return album == null || album.length() < 2 || album.contains("unknown") ? "Unknown" : album ;
+    public String getAlbum() {
+        return album == null || album.length() < 2 || album.contains("unknown") ? "Unknown" : album;
     }
 
-    public Bitmap getIconAsBitmap () {
+    public Bitmap getIconAsBitmap(int size) {
         String album = getAlbum();
         int color = ColorGenerator.MATERIAL.getColor(album);
         return Utils.drawableToBitmap(TextDrawable.builder().buildRect(
                 album.substring(0, 2), color
-        ));
+        ), size);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class LocalFileData implements IDisplayData {
         int color = ColorGenerator.MATERIAL.getColor(album);
         imageView.setImageDrawable(
                 TextDrawable.builder().buildRect(
-                    album.substring(0, 2), color
+                        album.substring(0, 2), color
                 )
         );
         rippleView.setRippleColor(color);

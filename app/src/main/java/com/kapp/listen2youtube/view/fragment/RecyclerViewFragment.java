@@ -14,12 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
-import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import com.kapp.listen2youtube.R;
 import com.kapp.listen2youtube.view.adapter.MaterialAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class RecyclerViewFragment extends Fragment {
@@ -28,6 +24,7 @@ public class RecyclerViewFragment extends Fragment {
     private MaterialAdapter mAdapter;
 
     private LinearLayoutManager layoutManager;
+    private RecyclerView mRecyclerView;
 
     public static RecyclerViewFragment newInstance(MaterialAdapter mAdapter) {
         RecyclerViewFragment fragment = new RecyclerViewFragment();
@@ -45,7 +42,7 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         if (isLandscape) {
@@ -79,6 +76,10 @@ public class RecyclerViewFragment extends Fragment {
             }, 500);
 
         }
+    }
+
+    public RecyclerView getRecyclerView() {
+        return mRecyclerView;
     }
 
     public RecyclerView.Adapter getAdapter() {

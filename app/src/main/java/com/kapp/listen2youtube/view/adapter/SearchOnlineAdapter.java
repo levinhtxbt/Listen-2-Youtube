@@ -2,7 +2,6 @@ package com.kapp.listen2youtube.view.adapter;
 
 import android.content.Context;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.kapp.listen2youtube.R;

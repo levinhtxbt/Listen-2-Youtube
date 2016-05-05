@@ -1,25 +1,21 @@
 package com.kapp.listen2youtube.service;
 
-import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Binder;
 import android.os.Build;
-import android.os.Handler;
 import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.kapp.listen2youtube.Constants;
 import com.kapp.listen2youtube.R;
 import com.kapp.listen2youtube.Settings;
 import com.kapp.listen2youtube.Utils;
@@ -30,8 +26,6 @@ import com.thin.downloadmanager.DownloadStatusListenerV1;
 import com.thin.downloadmanager.ThinDownloadManager;
 
 import java.io.File;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,7 +79,7 @@ public class DownloadService extends Service {
             }
         }
     });
-    private int notificationId = 0;
+    private static int notificationId = 0;
     boolean binding = false;
 
 

@@ -332,20 +332,21 @@ public class PlaybackService extends Service implements MyMediaPlayer.PlaybackLi
     public void onPrepare() {
         notification.flags = Notification.FLAG_ONGOING_EVENT;
         String description, title;
-        Bitmap albumArt;
+        Bitmap albumArt, bigAlbumArt;
         if (playOnline) {
             description = youtubeDataList.get(currentPosition).getDescription();
             title = youtubeDataList.get(currentPosition).getTitle();
             views.setTextViewText(R.id.tvTitle, title);
             bigViews.setTextViewText(R.id.tvTitle, title);
-            albumArt = youtubeDataList.get(currentPosition).getIconAsBitmap();
-
+            albumArt = youtubeDataList.get(currentPosition).getIconAsBitmap(500);
+            bigAlbumArt = youtubeDataList.get(currentPosition).getIconAsBitmap(2000);
         } else {
             description = localFileDataList.get(currentPosition).getDescription();
             title = localFileDataList.get(currentPosition).getTitle();
             views.setTextViewText(R.id.tvTitle, title);
             bigViews.setTextViewText(R.id.tvTitle, title);
-            albumArt = localFileDataList.get(currentPosition).getIconAsBitmap();
+            albumArt = localFileDataList.get(currentPosition).getIconAsBitmap(500);
+            bigAlbumArt = localFileDataList.get(currentPosition).getIconAsBitmap(2000);
         }
         views.setTextViewText(R.id.tvDescription, "Loading...");
         bigViews.setTextViewText(R.id.tvDescription, "Loading...");
@@ -383,7 +384,7 @@ public class PlaybackService extends Service implements MyMediaPlayer.PlaybackLi
                 .putString(MediaMetadataRetriever.METADATA_KEY_TITLE, title)
                 .putBitmap(
                         RemoteControlClientCompat.MetadataEditorCompat.METADATA_KEY_ARTWORK,
-                        albumArt.copy(albumArt.getConfig(), true))
+                        bigAlbumArt)
                 .apply();
     }
 

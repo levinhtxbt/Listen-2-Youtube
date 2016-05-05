@@ -501,7 +501,7 @@ public class MaterialViewPagerAnimator {
             //listen to scroll
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-                boolean firstZeroPassed;
+                boolean firstZeroPassed = false;
 
                 @Override
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {

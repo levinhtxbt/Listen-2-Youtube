@@ -1,6 +1,5 @@
 package com.kapp.listen2youtube;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,7 +13,6 @@ import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.kapp.listen2youtube.model.LocalFileData;
@@ -105,9 +103,8 @@ public class Utils {
     }
 
 
-
-    public static Bitmap drawableToBitmap (Drawable drawable) {
-        Bitmap bitmap = null;
+    public static Bitmap drawableToBitmap(Drawable drawable, int size) {
+        Bitmap bitmap;
 
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
@@ -116,7 +113,7 @@ public class Utils {
             }
         }
 
-        bitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888);
+        bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
 
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());

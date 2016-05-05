@@ -3,7 +3,7 @@
     android:id="@+id/notification_container"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary">
+    android:background="@color/blue_grey">
     <ImageView
         android:id="@+id/ivAlbumArt"
         android:layout_width="100dp"
@@ -21,8 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:textSize="@dimen/text_size_large"
             android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_large"
             android:maxLines="1"
             android:ellipsize="end"
             android:text="Title"/>

@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import com.kapp.listen2youtube.model.IDisplayData;
-import com.kapp.listen2youtube.model.LocalFileData;
-import com.kapp.listen2youtube.model.YoutubeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +35,7 @@ public abstract class MaterialAdapter<T extends IDisplayData> extends RecyclerVi
     }
 
     public void changeDataList(@NonNull List<T> list, boolean append){
+        append = append || getDataListSize() == 0;
         if (append) {
             dataList.addAll(list);
             notifyItemRangeInserted__(dataList.size() - list.size(), list.size());
@@ -60,7 +59,6 @@ public abstract class MaterialAdapter<T extends IDisplayData> extends RecyclerVi
     }
 
     public void notifyDataSetChanged__() {
-        notifyDataSetChanged();
         materialAdapter.notifyDataSetChanged();
     }
 
@@ -75,7 +73,6 @@ public abstract class MaterialAdapter<T extends IDisplayData> extends RecyclerVi
     }
 
     public void notifyItemRangeInserted__(int fromIndex, int itemCount){
-        notifyItemRangeInserted(fromIndex, itemCount);
         materialAdapter.notifyItemRangeInserted(
                 fromIndex + materialAdapter.getPlaceholderSize(),
                 itemCount
