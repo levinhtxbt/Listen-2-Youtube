@@ -12,6 +12,16 @@
         android:summary="Auto play next related video in youtube one by one."
         android:title="Auto play"/>
 
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="IS_REPEAT"
+        android:title="Play repeat" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="IS_SHUFFLE"
+        android:title="Play shuffle" />
+
     <EditTextPreference
         android:capitalize="none"
         android:key="DOWNLOAD_FOLDER"

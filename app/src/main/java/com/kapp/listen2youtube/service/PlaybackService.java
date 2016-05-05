@@ -85,7 +85,7 @@ public class PlaybackService extends Service implements MyMediaPlayer.PlaybackLi
     enum PauseReason {
         UserRequest,  // paused by user request
         FocusLoss,    // paused because of audio focus loss
-    };
+    }
     // why did we pause? (only relevant if mState == State.Paused)
     PauseReason mPauseReason = PauseReason.UserRequest;
 
@@ -510,9 +510,8 @@ public class PlaybackService extends Service implements MyMediaPlayer.PlaybackLi
         private final Uri uri;
 
         public PreviewAudioData(Uri uri) {
-            super(0, "", "music", "artist", -1, null);
+            super(0, "", "<>", "Audio preview", -1, null);
             this.uri = uri;
-            this.album = "Audio preview";
             if (uri.getScheme().equals(ContentResolver.SCHEME_FILE)) {
                 this.title = uri.getLastPathSegment();
                 this.duration = Utils.getMediaDuration(uri);
@@ -527,7 +526,6 @@ public class PlaybackService extends Service implements MyMediaPlayer.PlaybackLi
             } else {
                 this.title = uri.getEncodedPath();
                 this.album = "Unknown duration";
-                this.artist = "Audio preview";
             }
         }
 
