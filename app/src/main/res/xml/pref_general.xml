@@ -1,0 +1,22 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="SEARCH_ONLY_MUSIC_VIDEO"
+        android:summary="Enabled to filter search result with music category in youtube."
+        android:title="Only search on music category" />
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="IS_AUTO_PLAY"
+        android:summary="Auto play next related video in youtube one by one."
+        android:title="Auto play"/>
+
+    <EditTextPreference
+        android:capitalize="none"
+        android:key="DOWNLOAD_FOLDER"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Download folder" />
+</PreferenceScreen>

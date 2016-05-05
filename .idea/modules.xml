@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Listen2Youtube2.iml" filepath="$PROJECT_DIR$/Listen2Youtube2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materialviewpager/materialviewpager.iml" filepath="$PROJECT_DIR$/materialviewpager/materialviewpager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ripple-lib/ripple-lib.iml" filepath="$PROJECT_DIR$/ripple-lib/ripple-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/searchview/searchview.iml" filepath="$PROJECT_DIR$/searchview/searchview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vlc-android-sdk-1.9.8/vlc-android-sdk-1.9.8.iml" filepath="$PROJECT_DIR$/vlc-android-sdk-1.9.8/vlc-android-sdk-1.9.8.iml" />
+    </modules>
+  </component>
+</project>

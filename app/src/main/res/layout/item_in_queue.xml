@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/shadow"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:paddingLeft="10dp"
+        android:layout_marginRight="50dp"
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="20sp"
+            android:text="Remember when - Alan Jackson"/>
+        <TextView
+            android:id="@+id/tvSubtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:text="In queue"/>
+    </LinearLayout>
+    <com.andexert.library.RippleView
+        android:id="@+id/rippleRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:padding="10dp"
+        android:layout_marginRight="8dp"
+        app:rv_alpha="133"
+        app:rv_color="@android:color/black"
+        app:rv_rippleDuration="300">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_clear"/>
+    </com.andexert.library.RippleView>
+
+</FrameLayout>
