@@ -105,6 +105,9 @@ public class PlaybackService extends Service implements MyMediaPlayer.PlaybackLi
         bigViews = new RemoteViews(getPackageName(), R.layout.notification_expanded);
 
         Intent notificationIntent = new Intent(this, MainActivity.class);
+        notificationIntent.setFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP
+        );
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 

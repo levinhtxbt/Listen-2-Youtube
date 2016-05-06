@@ -38,18 +38,22 @@ public class PlayListAdapter extends MaterialAdapter<PlayListData> {
             dataList = list;
         if (filterText != null)
             filter(filterText);
-        else
-            notifyDataSetChanged__();
+        else {
+            if (append)
+                notifyItemRangeInserted__(dataList.size() - list.size() + 1, list.size());
+            else
+                notifyDataSetChanged__();
+        }
     }
 
     public void removePlaylist(int playListPosition) {
         dataList.remove(playListPosition);
-        notifyDataSetChanged__();
+        notifyItemRemoved__(playListPosition + 1);
     }
 
     public void removeItemInCurrentPlaylist(int pos){
         dataList.get(selectingPlaylist).items.remove(pos);
-        notifyDataSetChanged__();
+        notifyItemRemoved__(pos);
     }
 
     public void selectPlaylist(int id) {

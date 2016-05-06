@@ -40,6 +40,8 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
+import com.github.florent37.materialviewpager.MaterialViewPagerAnimator;
+import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.kapp.listen2youtube.R;
 import com.kapp.listen2youtube.Settings;
@@ -116,6 +118,7 @@ public class MainActivity extends AppCompatActivity
     private PlaybackService playbackService;
     private String flagCheckFetchRelatedVideoCallback;
     private boolean grantedPermission = true;
+    private boolean loadLocalFile = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,8 +196,7 @@ public class MainActivity extends AppCompatActivity
         if (localFileFragment == null) {
             localFileAdapter = new LocalFileAdapter(this, mHandler);
             localFileFragment = RecyclerViewFragment.newInstance(localFileAdapter);
-            if (grantedPermission)
-                new FetchLocalFileList(this, JOB_TYPE_FETCH_LOCAL_FILE, this).execute();
+            loadLocalFile = false;
         } else
             localFileAdapter = (LocalFileAdapter) localFileFragment.getAdapter();
 
@@ -567,6 +569,18 @@ public class MainActivity extends AppCompatActivity
             localFileAdapter.filter(null);
         if (position != PLAY_LIST_TAB && playListAdapter.getFilterText() != null)
             playListAdapter.filter(null);
+        if (position == SEARCH_ONLINE_TAB && searchOnlineAdapter.getDataListSize() == 0) {
+            MaterialViewPagerHelper.getAnimator(this).setScrollOffset(
+                    searchOnlineFragment.getRecyclerView(),
+                    0
+            );
+        }
+        if (position == LOCAL_FILE_TAB && !loadLocalFile && grantedPermission) {
+            new FetchLocalFileList(MainActivity.this, JOB_TYPE_FETCH_LOCAL_FILE, MainActivity.this)
+                    .execute();
+            loadLocalFile = true;
+        }
+
         currentTabIndex = position;
     }
 
@@ -585,6 +599,12 @@ public class MainActivity extends AppCompatActivity
                 if (result != null) {
                     YoutubeQuery.ResultValue resultValue = (YoutubeQuery.ResultValue) result;
                     searchOnlineAdapter.changeDataList(resultValue.list, false);
+                    MaterialViewPagerAnimator animator = MaterialViewPagerHelper.getAnimator(this);
+                    animator.setScrollOffset(
+                            searchOnlineFragment.getRecyclerView(),
+                            0
+                    );
+                    animator.onViewPagerPageChanged();
                     nextPageToken = resultValue.after;
                 } else
                     Toast.makeText(MainActivity.this, "Search error, please try again.", Toast.LENGTH_SHORT).show();
@@ -643,6 +663,7 @@ public class MainActivity extends AppCompatActivity
                     break;
                 searchOnlineQueryText = query;
                 nextPageToken = null;
+                searchOnlineAdapter.removeAll();
                 progressDialog = ProgressDialog.show(this, null, "Search in progress...");
                 new YoutubeQuery(JOB_TYPE_SEARCH, this).execute(query, null);
                 break;
@@ -686,9 +707,11 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             super.onChange(selfChange, uri);
-            if (grantedPermission)
+            if (grantedPermission) {
                 new FetchLocalFileList(MainActivity.this, JOB_TYPE_FETCH_LOCAL_FILE, MainActivity.this)
                         .execute();
+                loadLocalFile = true;
+            }
         }
     }
 }

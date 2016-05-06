@@ -1,10 +1,7 @@
 package com.kapp.listen2youtube.mediaplayer;
 
-import android.content.Context;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 
 import com.kapp.listen2youtube.presenter.GetLink;
@@ -13,9 +10,6 @@ import com.kapp.listen2youtube.presenter.IPresenterCallback;
 import org.videolan.libvlc.LibVLC;
 import org.videolan.libvlc.Media;
 import org.videolan.libvlc.MediaPlayer;
-import org.videolan.libvlc.util.AndroidUtil;
-
-import java.io.File;
 
 
 /**
@@ -56,8 +50,17 @@ public class MyMediaPlayer implements MediaPlayer.EventListener, IPresenterCallb
         sMediaPlayer.play();
         setStatus(PlaybackStatus.PLAYING);
     }
-    
-    public void prepareWithYoutubeId(String youtubeId){
+
+    private void prepareNoPlay(Uri uri) {
+        sMediaPlayer.stop();
+        if (sMediaPlayer.getMedia() == null || !uri.equals(sMediaPlayer.getMedia().getUri())) {
+            Media media = new Media(sLibVLC, uri);
+            sMediaPlayer.setMedia(media);
+        } else
+            Log.e(TAG, "prepareWithUri - line 57: REUSE current ");
+    }
+
+    public void prepareWithYoutubeId(String youtubeId) {
         flag++;
         setStatus(PlaybackStatus.PREPARING);
         sMediaPlayer.stop();
@@ -87,7 +90,7 @@ public class MyMediaPlayer implements MediaPlayer.EventListener, IPresenterCallb
         }
     }
 
-    public void release(){
+    public void release() {
         flag++;
         sMediaPlayer.release();
         sMediaPlayer = null;
@@ -160,7 +163,7 @@ public class MyMediaPlayer implements MediaPlayer.EventListener, IPresenterCallb
         return status == PlaybackStatus.ERROR;
     }
 
-    public boolean isFinished(){
+    public boolean isFinished() {
         return status == PlaybackStatus.FINISHED;
     }
 
@@ -188,12 +191,18 @@ public class MyMediaPlayer implements MediaPlayer.EventListener, IPresenterCallb
 
     @Override
     public void onFinish(int jobId, Object result) {
-        if (jobId == this.flag && result != null){
+        if (jobId == this.flag && result != null) {
             Bundle bundle = (Bundle) result;
             String url = bundle.getString("URL");
-            if (url != null)
-                prepareWithUri(Uri.parse(url));
-            else {
+            if (url != null) {
+                if (status == PlaybackStatus.PREPARING)
+                    prepareWithUri(Uri.parse(url));
+                else if (status == PlaybackStatus.PAUSED) {
+                    prepareNoPlay(Uri.parse(url));
+                    Log.e(TAG, "onFinish - line 208: prepare No play");
+                }
+
+            } else {
                 Log.e(TAG, "onFinish - line 158: PREPARE error, url null, stop media player");
                 stop();
             }

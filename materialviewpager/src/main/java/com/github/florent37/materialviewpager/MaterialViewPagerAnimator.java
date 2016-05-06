@@ -137,7 +137,7 @@ public class MaterialViewPagerAnimator {
      * @param scroll
      * @param yOffset
      */
-    private void setScrollOffset(Object scroll, float yOffset) {
+    public void setScrollOffset(Object scroll, float yOffset) {
         //do not re-scroll the source
         if (scroll != null && yOffset >= 0) {
 
@@ -295,7 +295,7 @@ public class MaterialViewPagerAnimator {
         }
     }
 
-    private void scrollUp(float yOffset) {
+    public void scrollUp(float yOffset) {
         if (ENABLE_LOG)
             Log.d(TAG, "scrollUp");
 

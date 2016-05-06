@@ -2,11 +2,14 @@ package com.kapp.listen2youtube.view.adapter;
 
 import android.content.Context;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 
 import com.kapp.listen2youtube.R;
 import com.kapp.listen2youtube.model.YoutubeData;
 import com.kapp.listen2youtube.view.activity.MainActivity;
+
+import java.util.List;
 
 /**
  * Created by khang on 18/04/2016.
@@ -58,5 +61,25 @@ public class SearchOnlineAdapter extends MaterialAdapter<YoutubeData> {
     public int getItemCount() {
         int count = dataList.size();
         return count == 0 ? 0 : count + 1;
+    }
+
+    public void removeAll() {
+        int size = getDataListSize();
+        if (size > 0) {
+            dataList.clear();
+            notifyDataSetChanged();
+            notifyItemRangeRemoved__(0, size + 1);
+
+        } else
+            notifyDataSetChanged__();
+    }
+
+    @Override
+    public void changeDataList(@NonNull List<YoutubeData> list, boolean append) {
+        if (append) {
+            dataList.addAll(list);
+            notifyDataSetChanged__();
+        } else
+            super.changeDataList(list, append);
     }
 }

@@ -62,14 +62,16 @@ public abstract class MaterialAdapter<T extends IDisplayData> extends RecyclerVi
         materialAdapter.notifyDataSetChanged();
     }
 
-    public void notifyItemInserted__(int position) {
-        notifyItemInserted(position);
-        materialAdapter.notifyItemInserted(position + materialAdapter.getPlaceholderSize());
-    }
 
     public void notifyItemRemoved__(int position) {
-        notifyItemRemoved(position);
         materialAdapter.notifyItemRemoved(position + materialAdapter.getPlaceholderSize());
+    }
+
+    public void notifyItemRangeRemoved__(int fromIndex, int itemCount) {
+        materialAdapter.notifyItemRangeRemoved(
+                fromIndex + materialAdapter.getPlaceholderSize(),
+                itemCount
+        );
     }
 
     public void notifyItemRangeInserted__(int fromIndex, int itemCount){

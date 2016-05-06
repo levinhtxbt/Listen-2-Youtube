@@ -12,10 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.kapp.listen2youtube.R;
 import com.kapp.listen2youtube.view.adapter.MaterialAdapter;
+
+import jp.wasabeef.recyclerview.animators.FadeInUpAnimator;
 
 
 public class RecyclerViewFragment extends Fragment {
@@ -59,7 +62,12 @@ public class RecyclerViewFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mAdapter.getMaterialAdapter());
-
+        FadeInUpAnimator fadeInUpAnimator = new FadeInUpAnimator();
+        fadeInUpAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        fadeInUpAnimator.setAddDuration(350);
+        fadeInUpAnimator.setRemoveDuration(350);
+        fadeInUpAnimator.setSupportsChangeAnimations(true);
+        mRecyclerView.setItemAnimator(fadeInUpAnimator);
 
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
 
