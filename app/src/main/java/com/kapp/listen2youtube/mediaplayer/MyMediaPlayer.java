@@ -11,6 +11,8 @@ import org.videolan.libvlc.LibVLC;
 import org.videolan.libvlc.Media;
 import org.videolan.libvlc.MediaPlayer;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by khang on 29/04/2016.
@@ -23,7 +25,10 @@ public class MyMediaPlayer implements MediaPlayer.EventListener, IPresenterCallb
     private static LibVLC sLibVLC;
 
     static {
-        sLibVLC = new LibVLC();
+        ArrayList<String> options = new ArrayList<>();
+        options.add("--http-reconnect");
+        options.add("--network-caching=2000");
+        sLibVLC = new LibVLC(options);
         sMediaPlayer = new MediaPlayer(sLibVLC);
     }
 

@@ -12,7 +12,6 @@
             <option value="$PROJECT_DIR$/materialviewpager" />
             <option value="$PROJECT_DIR$/ripple-lib" />
             <option value="$PROJECT_DIR$/searchview" />
-            <option value="$PROJECT_DIR$/vlc-android-sdk-1.9.8" />
           </set>
         </option>
         <option name="myModules">
@@ -22,7 +21,6 @@
             <option value="$PROJECT_DIR$/materialviewpager" />
             <option value="$PROJECT_DIR$/ripple-lib" />
             <option value="$PROJECT_DIR$/searchview" />
-            <option value="$PROJECT_DIR$/vlc-android-sdk-1.9.8" />
           </set>
         </option>
       </GradleProjectSettings>
