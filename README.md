@@ -8,5 +8,5 @@
   - Support CPUs: armeabi-v7a, arm64-v8a, mips, x86, x86_64
 
 ## Install:
-  - Download: https://cdn.rawgit.com/Khang-NT/Listen-2-Youtube/a1fb48533bf7bb7bf1ac425a6f57fcb1c3286e95/app/app-release.apk
+  - Download: https://drive.google.com/file/d/0Byh8ZvMluYzDSFB0YjB6ajV1d0U/view?usp=sharing
   - Xposed repo: http://repo.xposed.info/module/com.kapp.listen2youtube
