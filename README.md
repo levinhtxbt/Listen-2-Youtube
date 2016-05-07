@@ -8,5 +8,5 @@
   - Support CPUs: armeabi-v7a, arm64-v8a, mips, x86, x86_64
 
 ## Install:
-  - Download: https://drive.google.com/file/d/0Byh8ZvMluYzDSFB0YjB6ajV1d0U/view?usp=sharing
+  - Download: https://goo.gl/6LRyAN
   - Xposed repo: http://repo.xposed.info/module/com.kapp.listen2youtube
