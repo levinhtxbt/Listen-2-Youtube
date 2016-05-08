@@ -6,6 +6,6 @@
         android:id="@+id/fragment_settings"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.kapp.listen2youtube.view.fragment.SettingsFragment"
+        android:name="com.kapp.youtube.view.fragment.SettingsFragment"
         />
 </LinearLayout>

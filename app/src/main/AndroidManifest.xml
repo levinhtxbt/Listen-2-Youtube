@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kapp.listen2youtube">
+    package="com.kapp.youtube">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -9,15 +9,24 @@
     <permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
 
     <application
-        android:name=".MainApplication"
+        android:name="com.kapp.youtube.MainApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/new_ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="Enable Xposed APIs in this app." />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="53" />
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name="com.kapp.youtube.view.activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustNothing">
@@ -31,11 +40,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.DownloadManagerActivity"
+            android:name="com.kapp.youtube.view.activity.DownloadManagerActivity"
             android:label="Download management"
             android:theme="@style/AppBaseTheme" />
 
-        <service android:name=".service.DownloadService">
+        <service android:name="com.kapp.youtube.service.DownloadService">
             <intent-filter>
                 <action android:name="ACTION_NEW_DOWNLOAD" />
                 <action android:name="ACTION_REMOVE_DOWNLOAD" />
@@ -44,11 +53,12 @@
         </service>
 
         <activity
-            android:name=".view.activity.SettingsActivity"
+            android:name="com.kapp.youtube.view.activity.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:theme="@style/AppBaseTheme"/>
 
-        <activity android:name=".view.activity.AudioPreviewActivity"
+        <activity
+            android:name="com.kapp.youtube.view.activity.AudioPreviewActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -89,7 +99,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.PlaybackService">
+        <service android:name="com.kapp.youtube.service.PlaybackService">
             <intent-filter>
                 <action android:name="PlaybackService.ACTION_PAUSE"/>
                 <action android:name="PlaybackService.ACTION_TOGGLE_PLAYBACK"/>
@@ -102,7 +112,7 @@
             </intent-filter>
         </service>
 
-        <receiver android:name=".mediaplayer.MusicIntentReceiver">
+        <receiver android:name="com.kapp.youtube.mediaplayer.MusicIntentReceiver">
             <intent-filter>
                 <action android:name="android.media.AUDIO_BECOMING_NOISY" />
             </intent-filter>
