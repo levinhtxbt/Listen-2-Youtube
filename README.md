@@ -5,3 +5,8 @@
   - Download Youtube's video as an Audio file (with opus codec)
   - Play audio file, create playlist.
   - Support many audio codecs which are provided by VLC open source (https://wiki.videolan.org/AndroidCompile)
+  - Support CPUs: armeabi-v7a, arm64-v8a, mips, x86, x86_64
+
+## Install:
+  - Download: https://goo.gl/6LRyAN
+  - Xposed repo: http://repo.xposed.info/module/com.kapp.listen2youtube
