@@ -521,7 +521,7 @@ public class MainActivity extends AppCompatActivity
                     String sAux = "Send github repo";
                     sAux = sAux + "https://github.com/Khang-NT/Listen-2-Youtube";
                     i.putExtra(Intent.EXTRA_TEXT, sAux);
-                    startActivity(Intent.createChooser(i, "choose one"));
+                    startActivity(Intent.createChooser(i, "Choose one"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
